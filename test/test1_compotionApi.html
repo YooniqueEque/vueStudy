@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+    <div id="app">
+        <button @click="increase"> {{ count }} </button>
+        <button @click="sayHi"> {{ name }} </button>
+    </div>
+</body>
+
+</html>
+
+<!-- Vue 라이브러리 로딩-->
+<script src='https:unpkg.com/vue@3'></script>
+
+<script>
+
+    // 구조분해 할당을이용해 Vue의 속성 중 createApp과 ref 받아옴
+    const { createApp, ref } = Vue;
+
+    //createApp : Vue Application 작성을 위한 출발점
+    //mount를 통해 화면과 연결됨
+    createApp({
+
+        //setup에 반응성 데이터나 함수 작성
+        setup() {
+            const count = ref(0);
+            const increase = () => {
+                count.value++;
+            };
+            const name = ref("composition api");
+            const sayHi = () => {
+                alert(name.value);
+            };
+
+            //setup에 작성한 내용 중 template에서 사용되는 것들은 반드시 return 해야함
+            return { count, increase, name, sayHi, };
+        },
+    }).mount('#app');      //#app이라는 DOM이 지정된 것 (template이라고 함)
+
+</script>

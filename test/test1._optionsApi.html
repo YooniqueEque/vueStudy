@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <body>
+        <div id="app">
+            <button @click="increase"> {{ count }} </button>
+            <button @click="sayHi"> {{ name }} </button>
+        </div>
+    </body>
+</html>
+
+<!-- Vue 라이브러리 로딩-->
+<script src='https:unpkg.com/vue@3'></script>
+
+<script>
+
+    // 구조분해 할당을이용해 Vue의 속성 중 createApp과 ref 받아옴
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                count : 0,
+                name : "options api",
+            };
+        },
+
+        methods : {
+            increase() {
+                this.count++;
+            },
+            sayHi() {
+                alert(this.name);
+            },
+        },
+    }).mount("#app");
+
+</script>
